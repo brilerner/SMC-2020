@@ -26,3 +26,15 @@ def get_file(filespec):
             return path
     else:
         print('File not found')
+
+
+def get_data(filespec):
+    
+    import pandas as pd
+            
+    if filespec == 'weather':
+        weather_path = get_file('weather')
+        weather_df_iter = pd.read_csv(weather_path, chunksize=880)
+        return weather_df_iter
+    else:
+        print('File not found')
