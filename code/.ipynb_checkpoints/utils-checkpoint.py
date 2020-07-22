@@ -36,6 +36,9 @@ def get_data(filespec):
         weather_path = get_file('weather')
         weather_df_iter = pd.read_csv(weather_path, chunksize=880)
         return weather_df_iter
+    elif filespec == 'bldgs':
+        bdf = pd.read_csv('temp/bldgs.csv')
+        return bdf
     else:
         print('File not found')
 
@@ -72,6 +75,7 @@ def plot_bldgs():
     bdf = pd.read_csv('temp/bldgs.csv')
     bldgs = gv.Points(bdf, kdims=['Lon','Lat'], vdims=['area_total', 'MEAN_AVGHT']).opts(size=3, color='r')
     return bldgs
+
 
 def plot_footprints(df, filespec='mic'):
     
