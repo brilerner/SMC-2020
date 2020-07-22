@@ -1,1 +1,4 @@
 /data/*
+/docs
+/oth
+.ipynb_checkpoints/
