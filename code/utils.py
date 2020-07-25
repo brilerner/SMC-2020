@@ -1,3 +1,7 @@
+def test_df():
+    import pandas as pd
+    return pd.DataFrame({'a':[2,4],'b':[6,8]})
+
 
 def data_dir():
     
@@ -28,13 +32,18 @@ def get_file(filespec):
         print('File not found')
 
 
-def get_data(filespec):
+def get_data(filespec, old_weather_read = False):
     
     import pandas as pd
+    from datetime import datetime
             
     if filespec == 'weather':
         weather_path = get_file('weather')
-        weather_df_iter = pd.read_csv(weather_path, chunksize=880)
+        conv_dt = lambda x : datetime.strptime(x, '%Y-%m-%d_%H:%M:%S')
+        if not old_weather_read:
+            weather_df_iter = pd.read_csv(weather_path, chunksize=880, parse_dates=['time'], date_parser=conv_dt)
+        else:
+            weather_df_iter = pd.read_csv(weather_path, chunksize=880)
         return weather_df_iter
     elif filespec == 'bldgs':
         bdf = pd.read_csv('temp/bldgs.csv')
@@ -102,3 +111,15 @@ def geodf_to_csv(geodf, fname):
 def tile():
     import geoviews as gv
     return gv.tile_sources.Wikipedia
+
+def conv_temp(temp_in, in_scale='K', out_scale='F'):
+    
+    if in_scale == 'K':
+        if out_scale == 'F':
+            temp_out = temp_in*9/5 - 459.67
+    else:
+        print('Conversion not possible.')
+        return
+    return temp_out
+            
+        

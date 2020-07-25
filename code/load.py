@@ -1,3 +1,5 @@
+%config Completer.use_jedi = False
+
 import numpy as np
 import pandas as pd
 import geopandas as gp
