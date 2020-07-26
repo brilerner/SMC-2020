@@ -117,9 +117,14 @@ def conv_temp(temp_in, in_scale='K', out_scale='F'):
     if in_scale == 'K':
         if out_scale == 'F':
             temp_out = temp_in*9/5 - 459.67
+    elif in_scale == 'C':
+        if out_scale == 'F':
+            temp_out = temp_in*9/5 + 32
     else:
         print('Conversion not possible.')
         return
     return temp_out
             
-        
+def conv_dt(x):
+    from datetime import datetime
+    return datetime.strptime(x, '%Y-%m-%d_%H:%M:%S')
