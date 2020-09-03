@@ -1,6 +1,8 @@
 # SMC-2020
 2020 Smoky Mountains Computational Sciences and Engineering Conference Data Challenge
 
+Primary developers: Brian Lerner, Casey Christian
+
 ## Weather Viz
 
 Weather Viz is a tool created in order to analyze the weather data for Challenge 3 of the 2020 SMC Data Challenge.
